@@ -1,0 +1,42 @@
+{
+  "name": "megaeth-gas",
+  "version": "0.1.0",
+  "description": "Gas estimator for MegaETH. Shows dual gas costs (compute + storage), compares MegaETH vs Ethereum L1. Critical: MegaETH minimum gas is 60,000, not 21,000.",
+  "bin": {
+    "megaeth-gas": "./dist/cli.js"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "tsc --noEmit"
+  },
+  "keywords": ["megaeth", "gas", "estimation", "evm", "dual-gas", "real-time", "l2", "compute-gas", "storage-gas"],
+  "author": "Heathen",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LoserLab/megaeth-gas"
+  },
+  "dependencies": {
+    "commander": "^13.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "playwright": "^1.58.2",
+    "tsup": "^8.0.0",
+    "typescript": "^5.4.0",
+    "vitest": "^3.0.0"
+  }
+}

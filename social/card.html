@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>megaeth-gas social card</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #19191A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+
+  .card {
+    width: 1200px;
+    height: 628px;
+    background: #F2EAEA;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 80px 64px 80px;
+  }
+
+  .top-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #F2EAEA 0%, #F5AF94 20%, #FF8AA8 50%, #90D79F 80%, #F2EAEA 100%);
+    z-index: 10;
+  }
+
+  .glow-top {
+    position: absolute;
+    top: -180px;
+    right: 20%;
+    width: 600px;
+    height: 400px;
+    background: radial-gradient(ellipse, rgba(245, 175, 148, 0.15) 0%, rgba(245, 175, 148, 0.05) 50%, transparent 70%);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .glow-left {
+    position: absolute;
+    bottom: -60px;
+    left: -40px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(255, 138, 168, 0.10) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  /* Faded gas estimation output background */
+  .code-bg {
+    position: absolute;
+    top: 32px;
+    right: 50px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.8;
+    white-space: pre;
+    pointer-events: none;
+    z-index: 2;
+    user-select: none;
+    color: rgba(25, 25, 26, 0.06);
+  }
+
+  .code-bg .c-accent { color: rgba(255, 138, 168, 0.22); }
+  .code-bg .c-warn { color: rgba(245, 175, 148, 0.16); }
+  .code-bg .c-dim { color: rgba(25, 25, 26, 0.07); }
+
+  .brand {
+    position: absolute;
+    top: 40px;
+    left: 80px;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .brand-name {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #19191A;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .brand-line {
+    width: 32px;
+    height: 1px;
+    background: rgba(25, 25, 26, 0.12);
+  }
+
+  .brand-type {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: #90D79F;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .badge {
+    position: absolute;
+    top: 36px;
+    right: 80px;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 16px;
+    border: 1px solid rgba(144, 215, 159, 0.4);
+    border-radius: 100px;
+    background: rgba(144, 215, 159, 0.08);
+  }
+
+  .badge-dot {
+    width: 5px;
+    height: 5px;
+    background: #90D79F;
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(144, 215, 159, 0.5);
+  }
+
+  .badge-text {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: #5aba6e;
+    letter-spacing: 0.08em;
+  }
+
+  .content {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .code-hint {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(245, 175, 148, 0.6);
+    margin-bottom: 4px;
+  }
+
+  .title {
+    font-family: 'Inter', sans-serif;
+    font-size: 72px;
+    font-weight: 700;
+    color: #19191A;
+    letter-spacing: -0.045em;
+    line-height: 1;
+  }
+
+  .title .dim {
+    color: rgba(25, 25, 26, 0.25);
+  }
+
+  .title .accent {
+    color: #90D79F;
+  }
+
+  .subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: rgba(25, 25, 26, 0.6);
+    line-height: 1.5;
+  }
+
+  .bottom-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding-top: 20px;
+    border-top: 1px solid rgba(25, 25, 26, 0.06);
+  }
+
+  .pills {
+    display: flex;
+    gap: 8px;
+  }
+
+  .pill {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 100px;
+    letter-spacing: 0.02em;
+  }
+
+  .pill-mint {
+    background: rgba(144, 215, 159, 0.12);
+    border: 1px solid rgba(144, 215, 159, 0.3);
+    color: #5aba6e;
+  }
+
+  .pill-ghost {
+    background: rgba(25, 25, 26, 0.03);
+    border: 1px solid rgba(25, 25, 26, 0.08);
+    color: rgba(25, 25, 26, 0.45);
+  }
+
+  .bottom-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+  }
+
+  .built-in {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    color: rgba(25, 25, 26, 0.4);
+    letter-spacing: 0.02em;
+  }
+
+  .repo-link {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(25, 25, 26, 0.4);
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="top-line"></div>
+  <div class="glow-top"></div>
+  <div class="glow-left"></div>
+
+  <div class="code-bg"><span class="c-dim">$ megaeth-gas --preset transfer</span>
+
+<span class="c-accent">  MegaETH</span>  <span class="c-dim">(dual gas: compute + storage)</span>
+<span class="c-dim">  Total gas              </span><span class="c-accent">72,000</span>
+<span class="c-dim">  Compute gas            </span><span class="c-accent">33,000</span>
+<span class="c-dim">  Storage gas            </span><span class="c-accent">39,000</span>
+<span class="c-dim">  Gas price              </span><span class="c-accent">0.001 gwei</span>
+<span class="c-dim">  Estimated cost         </span><span class="c-accent">0.00000007 ETH</span>
+
+<span class="c-accent">  Ethereum L1</span>
+<span class="c-dim">  Gas estimate           </span><span class="c-accent">21,000</span>
+<span class="c-dim">  Gas price              </span><span class="c-accent">28.500 gwei</span>
+<span class="c-dim">  Estimated cost         </span><span class="c-accent">0.00059850 ETH</span>
+
+<span class="c-accent">  ↓ 99.9% cheaper on MegaETH</span></div>
+
+  <div class="brand">
+    <span class="brand-name">heathen</span>
+    <div class="brand-line"></div>
+    <span class="brand-type">Open Source</span>
+  </div>
+
+  <div class="badge">
+    <div class="badge-dot"></div>
+    <span class="badge-text">GAS ESTIMATOR</span>
+  </div>
+
+  <div class="content">
+    <div class="code-hint">&#9888; Minimum gas is 60,000, not 21,000</div>
+
+    <div>
+      <div class="title">megaeth<span class="dim">-</span><span class="accent">gas</span></div>
+      <div class="subtitle">Gas estimator for MegaETH. Shows dual gas costs (compute + storage) and compares against Ethereum L1.</div>
+    </div>
+
+    <div class="bottom-row">
+      <div class="pills">
+        <span class="pill pill-mint">6 Presets</span>
+        <span class="pill pill-mint">Dual Gas Model</span>
+        <span class="pill pill-ghost">Compute + Storage</span>
+        <span class="pill pill-ghost">CI-Ready</span>
+        <span class="pill pill-ghost">MIT License</span>
+      </div>
+      <div class="bottom-right">
+        <span class="built-in">Built in Mirra</span>
+        <span class="repo-link">github.com/LoserLab/megaeth-gas</span>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
