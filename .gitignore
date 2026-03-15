@@ -1,3 +1,6 @@
 node_modules
 dist
 *.tsbuildinfo
+.desloppify/
+scorecard.png
+query.json

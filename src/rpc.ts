@@ -38,7 +38,7 @@ async function rpcCall<T>(
 }
 
 /** Call eth_estimateGas */
-export async function ethEstimateGas(
+export function ethEstimateGas(
   rpcUrl: string,
   tx: TransactionCall
 ): Promise<string> {
@@ -46,7 +46,7 @@ export async function ethEstimateGas(
 }
 
 /** Call eth_gasPrice */
-export async function ethGasPrice(rpcUrl: string): Promise<string> {
+export function ethGasPrice(rpcUrl: string): Promise<string> {
   return rpcCall<string>(rpcUrl, "eth_gasPrice", []);
 }
 

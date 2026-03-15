@@ -1,5 +1,5 @@
 import type { GasEstimate, GasComparison, PresetType } from "./types.js";
-import { weiToGwei, weiToEth } from "./estimator.js";
+import { weiToGwei } from "./estimator.js";
 import { presetDescriptions } from "./presets.js";
 
 const RESET = "\x1b[0m";
